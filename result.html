@@ -3,36 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>結果画面</title>
+  <title>結果</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container center">
-    <h1>結果発表</h1>
+    <h2>結果</h2>
     <p id="score"></p>
-    <ul id="summary"></ul>
-    <button id="homeBtn">ホームに戻る</button>
+    <div id="resultList"></div>
+    <button onclick="goHome()">ホームに戻る</button>
   </div>
 
-  <script>
-    const resultData = JSON.parse(localStorage.getItem("quizResult"));
-    document.getElementById("score").textContent = 
-      `正解数：${resultData.correctCount} / ${resultData.total}問`;
-    
-    const list = document.getElementById("summary");
-    resultData.results.forEach((r, i) => {
-      const li = document.createElement("li");
-      li.innerHTML = `Q${i+1}: ${r.question}<br>
-      あなたの答え：${r.yourAnswer}<br>
-      正解：${r.correctAnswer}<br>
-      ${r.isCorrect ? "✅正解" : "❌不正解"}`;
-      list.appendChild(li);
-    });
-
-    document.getElementById("homeBtn").addEventListener("click", () => {
-      localStorage.removeItem("quizResult");
-      window.location.href = "index.html";
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

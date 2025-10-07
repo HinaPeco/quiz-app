@@ -13,5 +13,90 @@
     "question": "JavaScriptで変数を宣言するキーワードは？",
     "choices": ["var", "let", "const", "すべて正しい"],
     "answer": 3
+  },
+  {
+    "question": "TCP/IPの主要プロトコルを全て選べ",
+    "choices": ["HTTP", "FTP", "IP", "SMTP"],
+    "answer": [0,1,2,3]
+  },
+  {
+    "question": "OSI参照モデルの最上位層は？",
+    "choices": ["アプリケーション層", "ネットワーク層", "トランスポート層", "物理層"],
+    "answer": 0
+  },
+  {
+    "question": "CSSの略は？",
+    "choices": ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style System", "Colorful Style Syntax"],
+    "answer": 0
+  },
+  {
+    "question": "HTTPのステータスコード200は？",
+    "choices": ["成功", "リダイレクト", "クライアントエラー", "サーバーエラー"],
+    "answer": 0
+  },
+  {
+    "question": "HTTPSで暗号化されるものは？",
+    "choices": ["通信内容", "HTML構造", "画像サイズ", "CSS設定"],
+    "answer": 0
+  },
+  {
+    "question": "データベースの正規化の目的は？",
+    "choices": ["冗長性の排除", "表示速度の向上", "CSS最適化", "HTTP通信の高速化"],
+    "answer": 0
+  },
+  {
+    "question": "プログラムのバグを見つける方法は？",
+    "choices": ["デバッグ", "コンパイル", "リンク", "ビルド"],
+    "answer": 0
+  },
+  {
+    "question": "OSI参照モデルの層でデータをパケットに変換するのは？",
+    "choices": ["ネットワーク層", "物理層", "セッション層", "アプリケーション層"],
+    "answer": 0
+  },
+  {
+    "question": "IPアドレスの種類を全て選べ",
+    "choices": ["IPv4", "IPv6", "MACアドレス", "HTTP"],
+    "answer": [0,1]
+  },
+  {
+    "question": "Javaでオブジェクト指向を示す概念は？",
+    "choices": ["継承", "変数", "配列", "条件分岐"],
+    "answer": 0
+  },
+  {
+    "question": "CSSで文字色を赤にする記述は？",
+    "choices": ["color: red;", "font-color: red;", "text-color: red;", "font-style: red;"],
+    "answer": 0
+  },
+  {
+    "question": "HTMLでリンクを作るタグは？",
+    "choices": ["<a>", "<link>", "<href>", "<url>"],
+    "answer": 0
+  },
+  {
+    "question": "プログラムで条件分岐を表す構文は？",
+    "choices": ["if文", "for文", "while文", "switch文"],
+    "answer": 0
+  },
+  {
+    "question": "暗号化の方式を全て選べ",
+    "choices": ["共通鍵暗号", "公開鍵暗号", "ハッシュ関数", "HTTP"],
+    "answer": [0,1,2]
+  },
+  {
+    "question": "JavaScriptで配列に要素を追加するメソッドは？",
+    "choices": ["push", "pop", "shift", "unshift"],
+    "answer": 0
+  },
+  {
+    "question": "ネットワークのLANの意味は？",
+    "choices": ["Local Area Network", "Long Area Network", "Light Area Network", "Link Access Network"],
+    "answer": 0
+  },
+  {
+    "question": "データベースで一意の値を保証するキーは？",
+    "choices": ["主キー", "外部キー", "代替キー", "複合キー"],
+    "answer": 0
   }
 ]

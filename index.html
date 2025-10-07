@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>クイズホーム</title>
+  <title>.com Master ADVANCE クイズアプリ</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container center">
     <h1>.com Master ADVANCE クイズ</h1>
-    <button id="startBtn">スタート</button>
+    <button onclick="startQuiz()">スタート</button>
   </div>
 
   <script>
-    document.getElementById("startBtn").addEventListener("click", () => {
+    function startQuiz() {
       window.location.href = "quiz.html";
-    });
+    }
   </script>
 </body>
 </html>

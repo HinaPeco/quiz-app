@@ -1,17 +1,16 @@
 body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #f6f8fa;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
 .container {
   max-width: 600px;
-  margin: 80px auto;
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .center {
@@ -19,22 +18,18 @@ body {
 }
 
 button {
-  margin: 10px;
   padding: 10px 20px;
-  border: none;
-  background-color: #0078D7;
-  color: white;
+  margin: 10px 5px;
   font-size: 16px;
-  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover {
-  background-color: #005fa3;
-}
-
-#choices button {
+#choices label {
   display: block;
-  width: 100%;
+  margin: 5px 0;
+}
+
+.resultItem {
+  margin-bottom: 1em;
+  line-height: 1.5;
 }
