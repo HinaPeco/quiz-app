@@ -1,0 +1,17 @@
+[
+  {
+    "question": "IPアドレスの主な役割はどれ？",
+    "choices": ["通信相手を識別する", "暗号化を行う", "ウイルスを検出する", "ファイルを圧縮する"],
+    "answer": 0
+  },
+  {
+    "question": "HTMLの略は？",
+    "choices": ["Hyper Text Markup Language", "High Text Make Language", "Hyper Tool Multi Language", "Home Tool Markup Language"],
+    "answer": 0
+  },
+  {
+    "question": "JavaScriptで変数を宣言するキーワードは？",
+    "choices": ["var", "let", "const", "すべて正しい"],
+    "answer": 3
+  }
+]
