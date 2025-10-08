@@ -29,6 +29,27 @@ button {
   margin: 5px 0;
 }
 
+.choice {
+  padding: 6px;
+  margin: 3px 0;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.choice.correct {
+  background-color: #c8f7c5; /* 緑（正解） */
+}
+
+.choice.wrong {
+  background-color: #f8d7da; /* 赤（間違い） */
+}
+
+.choice.selected-correct {
+  background-color: #b5e7a0; /* 選んで正解 */
+  font-weight: bold;
+}
+
+
 .resultItem {
   margin-bottom: 1em;
   line-height: 1.5;

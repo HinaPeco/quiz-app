@@ -59,11 +59,12 @@ document.getElementById("nextBtn")?.addEventListener("click", () => {
     const q = questions[currentIndex];
     results.push({
       question: q.question,
-      yourAnswer: "未回答",
-      correctAnswer: Array.isArray(q.answer) ? q.answer.map(i => q.choices[i]).join(", ") : q.choices[q.answer],
+      choices: q.choices,
+      yourAnswerIndexes: [],
+      correctIndexes: Array.isArray(q.answer) ? q.answer : [q.answer],
       isCorrect: false
     });
-    document.getElementById("feedback").textContent = `❌ 回答されませんでした。正解は「${results[results.length-1].correctAnswer}」です。`;
+    document.getElementById("feedback").textContent = `❌ 回答されませんでした。正解は「${results[results.length-1].correctIndexes.map(i=>q.choices[i]).join(", ")}」です。`;
   } else if (!document.getElementById("submitBtn").disabled) {
     checkAnswer();
   }
@@ -89,21 +90,22 @@ function checkAnswer() {
   const checked = Array.from(document.querySelectorAll('input[name="choice"]:checked'))
                        .map(input => parseInt(input.value));
 
-  const isCorrect = arraysEqual(checked, Array.isArray(q.answer) ? q.answer : [q.answer]);
+  const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+  const isCorrect = arraysEqual(checked, correctAnswers);
 
   const feedback = document.getElementById("feedback");
   if (isCorrect) {
     feedback.textContent = "✅ 正解！";
     correctCount++;
   } else {
-    const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
     feedback.textContent = `❌ 不正解。正解は「${correctAnswers.map(i => q.choices[i]).join(", ")}」です。`;
   }
 
   results.push({
     question: q.question,
-    yourAnswer: checked.length ? checked.map(i => q.choices[i]).join(", ") : "未回答",
-    correctAnswer: (Array.isArray(q.answer) ? q.answer : [q.answer]).map(i => q.choices[i]).join(", "),
+    choices: q.choices,
+    yourAnswerIndexes: checked,
+    correctIndexes: correctAnswers,
     isCorrect
   });
 
@@ -136,11 +138,25 @@ if (window.location.pathname.includes("result.html")) {
       const qDiv = document.createElement("div");
       qDiv.className = "resultItem";
 
+      let choicesHTML = "";
+      item.choices.forEach((choice, i) => {
+        let className = "choice";
+        if (item.correctIndexes.includes(i)) {
+          className += " correct";
+        }
+        if (item.yourAnswerIndexes.includes(i) && !item.correctIndexes.includes(i)) {
+          className += " wrong";
+        }
+        if (item.yourAnswerIndexes.includes(i) && item.correctIndexes.includes(i)) {
+          className += " selected-correct";
+        }
+        choicesHTML += `<div class="${className}">${choice}</div>`;
+      });
+
       qDiv.innerHTML = `
         <strong>Q${index + 1}: ${item.question}</strong><br>
-        あなたの回答: ${item.yourAnswer}<br>
-        正解: ${item.correctAnswer}<br>
-        ${item.isCorrect ? "✅ 正解" : "❌ 不正解"}
+        ${choicesHTML}
+        <p>${item.isCorrect ? "✅ 正解" : "❌ 不正解"}</p>
       `;
 
       resultList.appendChild(qDiv);
