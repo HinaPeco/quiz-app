@@ -1,56 +1,205 @@
+/* ===== ベース ===== */
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  margin: 0;
   background-color: #f0f0f0;
+  color: #222;
 }
 
+/* 汎用コンテナ（ホームで使う） */
 .container {
   max-width: 600px;
-  margin: auto;
-  background-color: #fff;
+  margin: 20px auto;
+  background: #fff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-.center {
-  text-align: center;
-}
+.center { text-align: center; }
 
 button {
-  padding: 10px 20px;
-  margin: 10px 5px;
+  padding: 10px 16px;
+  margin: 6px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 8px;
+  border: none;
 }
 
-#choices label {
+.btn-primary {
+  background-color: #0078ff;
+  color: white;
+}
+.btn-primary:hover { background-color: #005fcc; }
+
+.btn-secondary {
+  background-color: #e8e8e8;
+  color: #333;
+}
+.btn-secondary:hover { background-color: #d3d3d3; }
+
+/* ===== ホームカード (元に近い見た目) ===== */
+.home-card {
+  margin-top: 80px;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+/* ===== クイズ画面（左右中央、上下上寄せ） ===== */
+.page-quiz {
+  display: flex;
+  justify-content: center; /* 左右中央 */
+  align-items: flex-start;  /* 上寄せ */
+  min-height: 100vh;
+  padding-top: 40px;        /* 上余白（調整可） */
+  background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+}
+
+.quiz-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-card {
+  width: 90%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.quiz-card h2 {
+  margin: 0 0 18px 0;
+  font-size: 20px;
+  color: #222;
+}
+
+/* 選択肢 */
+.choices label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #fbfcfe;
+  border: 1px solid transparent;
+}
+
+.choices input[type="checkbox"],
+.choices input[type="radio"] {
+  transform: scale(1.1);
+}
+
+/* フィードバック */
+.feedback {
+  margin-top: 12px;
+  min-height: 22px;
+  font-weight: 600;
+}
+
+/* ボタン群 */
+.quiz-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* 選択した後のスタイル（正解／不正解） */
+.correct-choice {
+  background-color: #e9f8ec;
+  border-color: #2ecc71;
+}
+.wrong-choice {
+  background-color: #fdeaea;
+  border-color: #e74c3c;
+}
+
+/* ===== 結果ページ（Microsoft Forms風） ===== */
+.page-result {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.forms-result-container {
+  width: 90%;
+  max-width: 760px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 28px 36px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.forms-result-title {
+  text-align: left;
+  font-size: 24px;
+  margin: 0 0 10px 0;
+}
+
+.forms-result-score {
+  text-align: left;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* 各問題ブロック */
+.question-block {
   display: block;
-  margin: 5px 0;
+  border-top: 1px solid #e6e6e6;
+  padding: 18px 0;
 }
 
-.choice {
-  padding: 6px;
-  margin: 3px 0;
-  border-radius: 5px;
-  background-color: #f7f7f7;
+.question-header {
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.choice.correct {
-  background-color: #c8f7c5; /* 緑（正解） */
+.answer-section {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
 }
 
-.choice.wrong {
-  background-color: #f8d7da; /* 赤（間違い） */
+.mark {
+  width: 36px;
+  text-align: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 6px;
 }
 
-.choice.selected-correct {
-  background-color: #b5e7a0; /* 選んで正解 */
-  font-weight: bold;
+.mark.correct { color: #2ecc71; }
+.mark.incorrect { color: #e74c3c; }
+
+.options {
+  flex-grow: 1;
 }
 
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  background: #fbfbfb;
+}
 
-.resultItem {
-  margin-bottom: 1em;
-  line-height: 1.5;
+.option-item input { transform: scale(1.0); }
+
+.correct-option { background: #e9f8ec; }
+.wrong-selected { background: #fdeaea; }
+
+/* 結果ボタン群 */
+.forms-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }

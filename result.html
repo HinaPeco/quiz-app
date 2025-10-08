@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>結果</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>結果 - .com Master ADVANCE</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="container center">
-    <h2>結果</h2>
-    <p id="score"></p>
-    <div id="resultList"></div>
-    <button onclick="goHome()">ホームに戻る</button>
+<body class="page-result">
+  <div class="forms-result-container">
+    <h1 class="forms-result-title">結果</h1>
+    <p class="forms-result-score">あなたの正答率：<span id="scoreSummary"></span></p>
+
+    <div id="results-list" class="forms-question-list"></div>
+
+    <div class="forms-buttons">
+      <button id="retry-btn" class="btn-primary">もう一度挑戦する</button>
+      <button id="home-btn" class="btn-secondary">ホームへ戻る</button>
+    </div>
   </div>
 
   <script src="script.js"></script>

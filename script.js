@@ -1,90 +1,134 @@
+/* 共通変数 */
 let questions = [];
 let currentIndex = 0;
 let correctCount = 0;
 let results = [];
 
-// JSONファイルから問題を取得してランダム10問抽出
-fetch("questions.json")
-  .then(res => res.json())
-  .then(data => {
-    questions = data.sort(() => 0.5 - Math.random()).slice(0, 10);
-    if (window.location.pathname.includes("quiz.html")) {
+/* ユーティリティ */
+function arraysEqual(a, b) {
+  if (a.length !== b.length) return false;
+  a = a.slice().sort();
+  b = b.slice().sort();
+  return a.every((v, i) => v === b[i]);
+}
+
+/* DOM読み込み後にページ判定して処理 */
+document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+
+  if (path.includes("quiz.html")) {
+    initQuizPage();
+  }
+
+  if (path.includes("result.html")) {
+    renderResultPage();
+  }
+});
+
+/* ========== クイズページ処理 ========== */
+function initQuizPage() {
+  const qEl = document.getElementById("question");
+  const choicesDiv = document.getElementById("choices");
+  const feedback = document.getElementById("feedback");
+  const submitBtn = document.getElementById("submitBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  // 初期状態
+  currentIndex = 0;
+  correctCount = 0;
+  results = [];
+
+  // 質問データ読み込み（ランダム10問）
+  fetch("questions.json")
+    .then(res => res.json())
+    .then(data => {
+      questions = data.sort(() => 0.5 - Math.random()).slice(0, 10);
       showQuestion();
-    }
+    })
+    .catch(err => {
+      qEl.textContent = "問題の読み込みに失敗しました。";
+      console.error(err);
+    });
+
+  submitBtn.addEventListener("click", () => {
+    checkAnswer();
   });
 
-// ---------------------
-// 問題表示
-// ---------------------
+  nextBtn.addEventListener("click", () => {
+    // もしまだsubmitが有効なら（未回答のまま「次へ」）は未回答として記録してから次へ
+    const anyChecked = document.querySelectorAll('input[name="choice"]:checked').length > 0;
+    if (!anyChecked && !submitBtn.disabled) {
+      const q = questions[currentIndex];
+      results.push({
+        question: q.question,
+        choices: q.choices,
+        yourAnswerIndexes: [],
+        correctIndexes: Array.isArray(q.answer) ? q.answer : [q.answer],
+        isCorrect: false
+      });
+      feedback.textContent = `❌ 回答されませんでした。正解は「${results[results.length-1].correctIndexes.map(i=>q.choices[i]).join(", ")}」です。`;
+      // ここで submitBtn を disabled にしておく（重複防止）
+      submitBtn.disabled = true;
+    } else if (!submitBtn.disabled) {
+      // もしチェックがあり、かつまだsubmitしていないなら submit を自動で実行
+      checkAnswer();
+    }
+
+    // 次の問題へ
+    currentIndex++;
+    if (currentIndex < questions.length) {
+      showQuestion();
+    } else {
+      // 終了：結果を localStorage に保存して結果画面へ
+      localStorage.setItem("quizResult", JSON.stringify({
+        correctCount,
+        total: questions.length,
+        results
+      }));
+      window.location.href = "result.html";
+    }
+  });
+}
+
+/* 問題表示 */
 function showQuestion() {
   const q = questions[currentIndex];
-  document.getElementById("question").textContent = `Q${currentIndex + 1}. ${q.question}`;
-
+  const qEl = document.getElementById("question");
   const choicesDiv = document.getElementById("choices");
+  const feedback = document.getElementById("feedback");
+  const submitBtn = document.getElementById("submitBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  qEl.textContent = `Q${currentIndex + 1}. ${q.question}`;
   choicesDiv.innerHTML = "";
+
+  // 複数解ありの場合と単一解で input type を分ける
+  const multiple = Array.isArray(q.answer);
 
   q.choices.forEach((choice, index) => {
     const label = document.createElement("label");
-    label.style.display = "block";
+    label.className = "choice-label";
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.value = index;
-    checkbox.name = "choice";
+    const input = document.createElement("input");
+    input.type = multiple ? "checkbox" : "radio";
+    input.name = "choice";
+    input.value = index;
 
-    label.appendChild(checkbox);
-    label.appendChild(document.createTextNode(choice));
+    label.appendChild(input);
+    const span = document.createElement("span");
+    span.textContent = choice;
+    label.appendChild(span);
+
     choicesDiv.appendChild(label);
   });
 
-  document.getElementById("feedback").textContent = "";
-  document.getElementById("submitBtn").disabled = false;
-  document.getElementById("nextBtn").disabled = false;
+  feedback.textContent = "";
+  submitBtn.disabled = false;
+  // 次へはすぐ押せない方が分かりやすいが元仕様に合わせて常に表示（ただし submit が未押なら自動 submit）
+  nextBtn.disabled = false;
 }
 
-// ---------------------
-// 回答ボタン
-// ---------------------
-document.getElementById("submitBtn")?.addEventListener("click", () => {
-  checkAnswer();
-});
-
-// ---------------------
-// 次へボタン
-// ---------------------
-document.getElementById("nextBtn")?.addEventListener("click", () => {
-  const anyChecked = document.querySelectorAll('input[name="choice"]:checked').length > 0;
-  
-  if (!anyChecked) {
-    const q = questions[currentIndex];
-    results.push({
-      question: q.question,
-      choices: q.choices,
-      yourAnswerIndexes: [],
-      correctIndexes: Array.isArray(q.answer) ? q.answer : [q.answer],
-      isCorrect: false
-    });
-    document.getElementById("feedback").textContent = `❌ 回答されませんでした。正解は「${results[results.length-1].correctIndexes.map(i=>q.choices[i]).join(", ")}」です。`;
-  } else if (!document.getElementById("submitBtn").disabled) {
-    checkAnswer();
-  }
-
-  currentIndex++;
-  if (currentIndex < questions.length) {
-    showQuestion();
-  } else {
-    localStorage.setItem("quizResult", JSON.stringify({
-      correctCount,
-      total: questions.length,
-      results
-    }));
-    window.location.href = "result.html";
-  }
-});
-
-// ---------------------
-// 正誤判定
-// ---------------------
+/* 正誤判定 */
 function checkAnswer() {
   const q = questions[currentIndex];
   const checked = Array.from(document.querySelectorAll('input[name="choice"]:checked'))
@@ -99,8 +143,11 @@ function checkAnswer() {
     correctCount++;
   } else {
     feedback.textContent = `❌ 不正解。正解は「${correctAnswers.map(i => q.choices[i]).join(", ")}」です。`;
+    // 強調：選択されている箇所を赤に、正解を緑に（見た目）
+    // （既に next に進むときにページ更新されるので視認用）
   }
 
+  // 結果配列に保存
   results.push({
     question: q.question,
     choices: q.choices,
@@ -109,64 +156,91 @@ function checkAnswer() {
     isCorrect
   });
 
+  // submit を無効にして二重送信防止
   document.getElementById("submitBtn").disabled = true;
-}
 
-// ---------------------
-// 配列比較（順不同で完全一致判定）
-// ---------------------
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  a = a.slice().sort();
-  b = b.slice().sort();
-  return a.every((v, i) => v === b[i]);
-}
-
-// ---------------------
-// 結果画面表示
-// ---------------------
-if (window.location.pathname.includes("result.html")) {
-  window.addEventListener("DOMContentLoaded", () => {
-    const resultData = JSON.parse(localStorage.getItem("quizResult"));
-    const score = document.getElementById("score");
-    score.textContent = `正解数: ${resultData.correctCount} / ${resultData.total}`;
-
-    const resultList = document.getElementById("resultList");
-    resultList.innerHTML = "";
-
-    resultData.results.forEach((item, index) => {
-      const qDiv = document.createElement("div");
-      qDiv.className = "resultItem";
-
-      let choicesHTML = "";
-      item.choices.forEach((choice, i) => {
-        let className = "choice";
-        if (item.correctIndexes.includes(i)) {
-          className += " correct";
-        }
-        if (item.yourAnswerIndexes.includes(i) && !item.correctIndexes.includes(i)) {
-          className += " wrong";
-        }
-        if (item.yourAnswerIndexes.includes(i) && item.correctIndexes.includes(i)) {
-          className += " selected-correct";
-        }
-        choicesHTML += `<div class="${className}">${choice}</div>`;
-      });
-
-      qDiv.innerHTML = `
-        <strong>Q${index + 1}: ${item.question}</strong><br>
-        ${choicesHTML}
-        <p>${item.isCorrect ? "✅ 正解" : "❌ 不正解"}</p>
-      `;
-
-      resultList.appendChild(qDiv);
-    });
+  // ビジュアルで強調（選択肢の色付け）
+  // まず全ラベルをリセット
+  document.querySelectorAll("#choices label").forEach((lab, idx) => {
+    lab.classList.remove("correct-choice", "wrong-choice");
+    const input = lab.querySelector("input");
+    const i = parseInt(input.value);
+    if (correctAnswers.includes(i)) lab.classList.add("correct-choice");
+    if (checked.includes(i) && !correctAnswers.includes(i)) lab.classList.add("wrong-choice");
   });
 }
 
-// ---------------------
-// ホームに戻る
-// ---------------------
-function goHome() {
-  window.location.href = "index.html";
+/* ========== 結果ページの描画 ========== */
+function renderResultPage() {
+  const raw = localStorage.getItem("quizResult");
+  const list = document.getElementById("results-list");
+  const summary = document.getElementById("scoreSummary");
+  const retry = document.getElementById("retry-btn");
+  const home = document.getElementById("home-btn");
+
+  if (!raw) {
+    list.innerHTML = "<p>結果データが見つかりません。クイズを最初から実行してください。</p>";
+    summary.textContent = "-";
+    retry.onclick = () => window.location.href = "quiz.html";
+    home.onclick = () => window.location.href = "index.html";
+    return;
+  }
+
+  const data = JSON.parse(raw);
+  summary.textContent = `${data.correctCount} / ${data.total}`;
+
+  list.innerHTML = "";
+  data.results.forEach((item, idx) => {
+    const block = document.createElement("div");
+    block.className = "question-block";
+
+    const header = document.createElement("div");
+    header.className = "question-header";
+    header.textContent = `Q${idx+1}: ${item.question}`;
+
+    const answerSection = document.createElement("div");
+    answerSection.className = "answer-section";
+
+    const mark = document.createElement("div");
+    mark.className = "mark " + (item.isCorrect ? "correct" : "incorrect");
+    mark.textContent = item.isCorrect ? "✔" : "✖";
+
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "options";
+
+    item.choices.forEach((choiceText, i) => {
+      const opt = document.createElement("div");
+      opt.className = "option-item";
+      if (item.correctIndexes.includes(i)) opt.classList.add("correct-option");
+      if (item.yourAnswerIndexes.includes(i) && !item.correctIndexes.includes(i)) opt.classList.add("wrong-selected");
+
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.disabled = true;
+      if (item.yourAnswerIndexes.includes(i)) input.checked = true;
+      opt.appendChild(input);
+
+      const label = document.createElement("label");
+      label.style.marginLeft = "6px";
+      label.textContent = choiceText;
+      opt.appendChild(label);
+
+      optionsDiv.appendChild(opt);
+    });
+
+    answerSection.appendChild(mark);
+    answerSection.appendChild(optionsDiv);
+
+    block.appendChild(header);
+    block.appendChild(answerSection);
+
+    list.appendChild(block);
+  });
+
+  retry.onclick = () => {
+    // もう一度やるなら以前の結果は消して新しく
+    localStorage.removeItem("quizResult");
+    window.location.href = "quiz.html";
+  };
+  home.onclick = () => window.location.href = "index.html";
 }

@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>.com Master ADVANCE クイズアプリ</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>.com Master ADVANCE クイズ</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="container center">
+<body class="page-home">
+  <div class="container center home-card">
     <h1>.com Master ADVANCE クイズ</h1>
-    <button onclick="startQuiz()">スタート</button>
+    <p>過去問で腕試し！</p>
+    <button id="startBtn" class="btn-primary">スタート</button>
   </div>
 
   <script>
-    function startQuiz() {
+    document.getElementById("startBtn").addEventListener("click", () => {
+      // start fresh: clear any previous quizResult
+      // (オプション) localStorage.removeItem("quizResult");
       window.location.href = "quiz.html";
-    }
+    });
   </script>
 </body>
 </html>
