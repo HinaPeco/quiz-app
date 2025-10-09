@@ -46,6 +46,27 @@ button {
   border-radius: 16px;
 }
 
+/* ホーム画面もクイズ画面と同じ背景に */
+.page-home {
+  display: flex;
+  justify-content: center; /* 左右中央 */
+  align-items: flex-start;  /* 上寄せ */
+  min-height: 100vh;
+  padding-top: 40px;        /* 上余白 */
+  background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+}
+
+/* ホーム画面のボタンを青で統一 */
+.page-home .btn-primary,
+.page-home .btn-secondary {
+  background-color: #0078ff;
+  color: white;
+}
+.page-home .btn-primary:hover,
+.page-home .btn-secondary:hover {
+  background-color: #005fcc;
+}
+
 /* ===== クイズ画面（左右中央、上下上寄せ） ===== */
 .page-quiz {
   display: flex;
