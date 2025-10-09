@@ -15,18 +15,23 @@
     <button id="advanced2Btn" class="btn-primary">過去問★★</button>
   </div>
 
+<script>
+  // モード選択でモードを保存し、quiz.htmlへ遷移
+  document.getElementById("basicBtn").addEventListener("click", () => {
+    localStorage.setItem("quizMode", "basic");
+    window.location.href = "quiz.html";
+  });
 
-  <script>
-    // モード選択でモードを保存し、quiz.htmlへ遷移
-    document.getElementById("basicBtn").addEventListener("click", () => {
-      localStorage.setItem("quizMode", "basic");
-      window.location.href = "quiz.html";
-    });
+  document.getElementById("advancedBtn").addEventListener("click", () => {
+    localStorage.setItem("quizMode", "advanced");
+    window.location.href = "quiz.html";
+  });
 
-    document.getElementById("advancedBtn").addEventListener("click", () => {
-      localStorage.setItem("quizMode", "advanced");
-      window.location.href = "quiz.html";
-    });
-  </script>
+  document.getElementById("advanced2Btn").addEventListener("click", () => {
+    localStorage.setItem("quizMode", "advanced_doublestar");
+    window.location.href = "quiz.html";
+  });
+</script>
+
 </body>
 </html>

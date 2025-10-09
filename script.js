@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* ========== クイズページ処理 ========== */
 function initQuizPage() {
   const qEl = document.getElementById("question");
   const choicesDiv = document.getElementById("choices");
@@ -38,13 +37,19 @@ function initQuizPage() {
   results = [];
 
   // --- ★ モードによって読み込む問題ファイルを切り替える ---
-  const mode = localStorage.getItem("quizMode") || "advanced"; // デフォルトは過去問モード
-  const questionFile =
-    mode === "basic" ? "basic_questions.json" : "advanced_questions.json";
+  const mode = localStorage.getItem("quizMode") || "basic";
+
+  // モードに応じて問題ファイルを決定
+  let questionFile = "basic_questions.json";
+  if (mode === "advanced") {
+    questionFile = "advanced_questions.json";
+  } else if (mode === "advanced_doublestar") {
+    questionFile = "advanced_doublestar_questions.json";
+  }
 
   // --- 質問データ読み込み（ランダム10問） ---
   fetch(questionFile)
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
       questions = data.sort(() => 0.5 - Math.random()).slice(0, 10);
       showQuestion();
@@ -90,6 +95,7 @@ function initQuizPage() {
     }
   });
 }
+
 
 
 /* 問題表示 */
@@ -240,7 +246,10 @@ function renderResultPage() {
   });
 
   retry.onclick = () => {
-    // もう一度やるなら以前の結果は消して新しく
+    // もう一度やるなら以前の結果は消すが、モードは維持
+    const data = JSON.parse(localStorage.getItem("quizResult"));
+    const mode = data?.mode || "basic";
+    localStorage.setItem("quizMode", mode);
     localStorage.removeItem("quizResult");
     window.location.href = "quiz.html";
   };
