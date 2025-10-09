@@ -33,13 +33,17 @@ function initQuizPage() {
   const submitBtn = document.getElementById("submitBtn");
   const nextBtn = document.getElementById("nextBtn");
 
-  // 初期状態
   currentIndex = 0;
   correctCount = 0;
   results = [];
 
-  // 質問データ読み込み（ランダム10問）
-  fetch("questions.json")
+  // --- ★ モードによって読み込む問題ファイルを切り替える ---
+  const mode = localStorage.getItem("quizMode") || "advanced"; // デフォルトは過去問モード
+  const questionFile =
+    mode === "basic" ? "basic_questions.json" : "advanced_questions.json";
+
+  // --- 質問データ読み込み（ランダム10問） ---
+  fetch(questionFile)
     .then(res => res.json())
     .then(data => {
       questions = data.sort(() => 0.5 - Math.random()).slice(0, 10);
@@ -55,7 +59,6 @@ function initQuizPage() {
   });
 
   nextBtn.addEventListener("click", () => {
-    // もしまだsubmitが有効なら（未回答のまま「次へ」）は未回答として記録してから次へ
     const anyChecked = document.querySelectorAll('input[name="choice"]:checked').length > 0;
     if (!anyChecked && !submitBtn.disabled) {
       const q = questions[currentIndex];
@@ -67,28 +70,27 @@ function initQuizPage() {
         isCorrect: false
       });
       feedback.textContent = `❌ 回答されませんでした。正解は「${results[results.length-1].correctIndexes.map(i=>q.choices[i]).join(", ")}」です。`;
-      // ここで submitBtn を disabled にしておく（重複防止）
       submitBtn.disabled = true;
     } else if (!submitBtn.disabled) {
-      // もしチェックがあり、かつまだsubmitしていないなら submit を自動で実行
       checkAnswer();
     }
 
-    // 次の問題へ
     currentIndex++;
     if (currentIndex < questions.length) {
       showQuestion();
     } else {
-      // 終了：結果を localStorage に保存して結果画面へ
+      // 結果を保存（モードも一緒に保存）
       localStorage.setItem("quizResult", JSON.stringify({
         correctCount,
         total: questions.length,
-        results
+        results,
+        mode
       }));
       window.location.href = "result.html";
     }
   });
 }
+
 
 /* 問題表示 */
 function showQuestion() {

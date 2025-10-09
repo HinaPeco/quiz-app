@@ -9,14 +9,21 @@
 <body class="page-home">
   <div class="container center home-card">
     <h1>.com Master ADVANCE クイズ</h1>
-    <p>過去問で腕試し！</p>
-    <button id="startBtn" class="btn-primary">スタート</button>
+    <p>モードを選択してください</p>
+
+    <button id="basicBtn" class="btn-primary">基礎問題</button>
+    <button id="advancedBtn" class="btn-secondary">過去問</button>
   </div>
 
   <script>
-    document.getElementById("startBtn").addEventListener("click", () => {
-      // start fresh: clear any previous quizResult
-      // (オプション) localStorage.removeItem("quizResult");
+    // モード選択でモードを保存し、quiz.htmlへ遷移
+    document.getElementById("basicBtn").addEventListener("click", () => {
+      localStorage.setItem("quizMode", "basic");
+      window.location.href = "quiz.html";
+    });
+
+    document.getElementById("advancedBtn").addEventListener("click", () => {
+      localStorage.setItem("quizMode", "advanced");
       window.location.href = "quiz.html";
     });
   </script>
