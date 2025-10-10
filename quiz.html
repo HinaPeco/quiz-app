@@ -9,12 +9,19 @@
 <body class="page-quiz">
   <div class="quiz-wrapper">
     <div class="quiz-card">
+      <!-- 問題文 -->
       <h2 id="question">読み込み中...</h2>
 
+      <!-- ✅ 追加：問題画像表示用エリア -->
+      <div id="question-image" class="question-image"></div>
+
+      <!-- 選択肢 -->
       <div id="choices" class="choices"></div>
 
+      <!-- フィードバック -->
       <p id="feedback" class="feedback"></p>
 
+      <!-- ボタン -->
       <div class="quiz-buttons">
         <button id="submitBtn" class="btn-primary">回答</button>
         <button id="nextBtn" class="btn-secondary">次へ</button>

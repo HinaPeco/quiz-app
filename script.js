@@ -107,7 +107,17 @@ function showQuestion() {
   const submitBtn = document.getElementById("submitBtn");
   const nextBtn = document.getElementById("nextBtn");
 
+  // 問題文を表示
   qEl.textContent = `Q${currentIndex + 1}. ${q.question}`;
+
+  // 画像がある場合だけ表示する
+  const imageContainer = document.getElementById("question-image");
+  if (q.image) {
+    imageContainer.innerHTML = `<img src="${q.image}" alt="問題画像" class="question-img">`;
+  } else {
+    imageContainer.innerHTML = "";
+  }
+
   choicesDiv.innerHTML = "";
 
   // 複数解ありの場合と単一解で input type を分ける
@@ -132,9 +142,9 @@ function showQuestion() {
 
   feedback.textContent = "";
   submitBtn.disabled = false;
-  // 次へはすぐ押せない方が分かりやすいが元仕様に合わせて常に表示（ただし submit が未押なら自動 submit）
   nextBtn.disabled = false;
 }
+
 
 /* 正誤判定 */
 function checkAnswer() {

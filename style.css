@@ -224,3 +224,17 @@ button {
   gap: 12px;
   justify-content: center;
 }
+
+
+/* ===== 画像問題対応 ===== */
+.question-image {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.question-image img {
+  max-width: 85%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
