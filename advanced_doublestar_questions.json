@@ -266,7 +266,7 @@
   },
   {
     "question": "ルーターのルーティングテーブルが以下の表のように設定されている。宛先 IP アドレスが 2001:db8:3:12:184::68 のネクストホップとして正しいものを 1 つ選びなさい。",
-     "image":"images/img_advanced_questionB55.png",
+    "image":"images/img_advanced_questionB03.png",
     "choices": [
       "2001:db8:0:100::1",
       "2001:db8:0:200::1",
@@ -490,7 +490,7 @@
   },
   {
     "question": "ルーターのルーティングテーブルが以下の表のように設定されている。宛先 IP アドレスが 192.168.154.58 の場合、ネクストホップの IP アドレスとして正しいものを 1 つ選びなさい。",
-    "images":"images/img_advanced_questionC56.png",
+    "image":"images/img_advanced_questionC56.png",
     "choices": [
       "192.168.0.2",
       "192.168.0.6",
@@ -565,7 +565,7 @@
   },
   {
     "question": "以下の図のネットワークにおいて、ホスト B からホスト C への SSH 接続に失敗した。表の試験結果を考慮して、接続に失敗する原因として考えられるものを下の選択肢からすべて選びなさい。",
-    "images":"images/img_advanced_questionC63.png",
+    "image":"images/img_advanced_questionC63.png",
     "choices": [
       "ホスト C の SSH サーバープリケーションが動作していない。",
       "ホスト C にデフォルトゲートウェイの設定が入っていない。",
@@ -745,7 +745,7 @@
   },
   {
     "question": "2001:db8:1000:1000::1という宛先アドレスが持つパケットが下の表に示すルーティングテーブルを保持するルータに到着した場合、ルーティングテーブルのどの行が適用されるか1つ選びなさい。",
-    "images":"images/img_advanced_questionD57.png",
+    "image":"images/img_advanced_questionD57.png",
     "choices": [
       "a",
       "b",
@@ -758,7 +758,7 @@
   },
   {
     "question": "2001:db8:1000::1という宛先アドレスが持つパケットが下の表に示すルーティングテーブルを保持するルータに到着した場合、ルーティングテーブルのどの行が適用されるか1つ選びなさい。",
-    "images":"images/img_advanced_questionD57.png",
+    "image":"images/img_advanced_questionD57.png",
     "choices": [
       "a",
       "b",
@@ -771,7 +771,7 @@
   },
   {
     "question": "2001:db8:1001::1という宛先アドレスが持つパケットが下の表に示すルーティングテーブルを保持するルータに到着した場合、ルーティングテーブルのどの行が適用されるか1つ選びなさい。",
-    "images":"images/img_advanced_questionD57.png",
+    "image":"images/img_advanced_questionD57.png",
     "choices": [
       "a",
       "b",
@@ -940,7 +940,7 @@
   },
   {
     "question": "図のネットワークにおいて、ホスト A からホスト C への SSH 接続に失敗した。表の試験結果から、接続に失敗する原因として考えられるものを下の選択肢から 2 つ選びなさい。",
-    "images":"images/img_advanced_questionE52.png",
+    "image":"images/img_advanced_questionE52.png",
     "choices": [
       "スイッチングハブの MAC アドレス学習機能が正常に動作していない。",
       "ホスト C に接続されている LAN ケーブルが断線している。",
@@ -964,7 +964,7 @@
   },
   {
     "question": "図のようなネットワークがあり、ルーターA とルーターB のルーティングテーブルは表のようになっている。このホスト X からホスト Q、ホスト Y からホスト P に Ping を送信し、どちらの場合も正常に返信を受け取った。その際のパケットはどのように転送されていたか。(1)、(2)の場合について正しいものを、下の選択肢からそれぞれ 1 つずつ選びなさい。\n(1) ホスト X→ホスト Q\n(2) ホスト Y→ホスト P",
-    "images":"images/img_advanced_questionE54.png",
+    "image":"images/img_advanced_questionE54.png",
     "choices": [
       "ルーターA→ルーターB→ホスト P または Q→ルーターB→ルーターC→ルーターA",
       "ルーターA→ルーターB→ホスト P または Q→ルーターB→ルーターA",
@@ -997,9 +997,10 @@
     ],
     "answer": 1
   },
+
   {
     "question": "Web ブラウザーから送信された次のリクエストメッセージについて述べた以下の文のうち、誤っているものを 2 つ選びなさい。\n\nGET /index.html HTTP/1.1\nHost: www.example.com\nUser-Agent: Mozilla/5.0\nAccept-Encoding: gzip\nAccept-Charset: Shift_JIS\nAccept-Language: ja\nConnection: Keep-Alive",
-    "images":"images/img_advanced_questionE57.png",
+    "image":"images/img_advanced_questionE57.png",
     "choices": [
       "Web ブラウザーが gzip 形式をサポートしていることを、Web サーバーに伝えている。",
       "Web ブラウザーから HTML 形式の文書をサーバーに送信している。",

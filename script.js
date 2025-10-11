@@ -265,3 +265,4 @@ function renderResultPage() {
   };
   home.onclick = () => window.location.href = "index.html";
 }
+

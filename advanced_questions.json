@@ -545,7 +545,7 @@
   },
   {
     "question": "以下の図で示すように、PCにおいて3つのコマンドを実行し、結果が得られた。この結果からわかることをすべて選びなさい。なお、図のネットワークではトンネリング技術や IPv4-IPv6 変換 (トランスレーション) 技術は使用されていないものとする。",
-     "image":"images/img_advanced_questionB03.png",
+    "image":"images/img_advanced_questionB03.png",
     "choices": [
       "IPv6アドレス2のfe80::b5be:8 はリンクローカルアドレスであり、PCとWeb サーバーとの通信の際の始点アドレスとして使用される。",
       "PCから DNS サーバーへはIPv6でアクセスされた。",
@@ -701,7 +701,7 @@
   },
   {
     "question": "下図で示すような集合住宅におけるFTTH の接続方式にあてはまるものを1つ選びなさい。",
-     "image":"images/img_advanced_questionB18.png",
+    "image":"images/img_advanced_questionB18.png",
     "choices": [
       "LAN配線方式",
       "VDSL方式",
@@ -764,8 +764,8 @@
     "answer": [0, 1]
   },
   {
-    "question": "以下の図においてPCAから Web ブラウザーでhttp://www.example.com に接続できない不具合が発生したため、トラブルシュートを行い次のことが分かった。このとき、トラブルが発生していると考えられる機器はどれか。下の選択肢から2つ選びなさい。\n・PCAでping 192.168.0.1 コマンドを実行し、応答が返ってこなかった。\n・PCAでping 192.168.0.201 コマンドを実行し、応答が返ってこなかった。\n・PCAから Web ブラウザーで http://www.example.jp に接続できなかった。\n・PCBでping 192.168.0.1 コマンドを実行し、応答が返ってきた。\n・PCBから Web ブラウザーでhttp://www.example.com に接続できた。",
-     "image":"images/img_advanced_questionB24.png",
+    "question": "以下の図においてPCAから Web ブラウザーでhttp://www.example.com に接続できない不具合が発生したため、トラブルシュートを行い次のことが分かった。このとき、トラブルが発生していると考えられる機器はどれか。下の選択肢から2つ選びなさい。",
+    "image":"images/img_advanced_questionB24.png",
     "choices": [
       "PCA",
       "Hub",
@@ -879,7 +879,7 @@
   },
   {
     "question": "乱数表を事前にユーザーへ渡し、認証画面で表中の特定の欄を指定してその値を入力させることで認証する認証方式がある。次に示す乱数表のすべての内容を得るために用いられる攻撃手法としてもっとも典型的なものを 1 つ選びなさい。",
-     "image":"images/img_advanced_questionB35.png",
+    "image":"images/img_advanced_questionB35.png",
     "choices": [
       "DoS 攻撃",
       "SQL インジェクション",
@@ -911,7 +911,7 @@
   },
   {
     "question": "図のようなオフィス LAN のネットワーク環境において、来客の持ち込み PC が無線 LAN アクセスポイント経由でインターネットに接続するのを許可しつつ、オフィス PC にアクセスさせず、来客の PC 同士も直接無線 LAN 経由で接続できないようにするために利用される機能として、適当なものを下の選択肢から 1 つ選びなさい。なお来客の持ち込み PC 用には、オフィス PC で利用するものとは別の ESSID を用意するものとする。",
-     "image":"images/img_advanced_questionB38.png",
+    "image":"images/img_advanced_questionB38.png",
     "choices": [
       "無線 LAN アクセスポイントのプライバシーセパレーター",
       "無線 LAN アクセスポイントの ESSID ステルス",
@@ -1096,7 +1096,7 @@
   },
   {
     "question": "図はIPv6 ネットワークにおけるリンク層アドレス解決の例である。①、②に当てはまるメッセージの組み合わせの中から、適当なものを下の選択肢から1つ選びなさい。",
-    "images":"images/img_advanced_questionC05.png",
+    "image":"images/img_advanced_questionC05.png",
     "choices": [
       "①NS (Neighbor Solicitation) ②NA (Neighbor Advertisement)",
       "①RS (Router Solicitation) ②RA (Router Advertisement)",
@@ -1305,7 +1305,7 @@
   },
   {
     "question": "以下は、ある家庭内LANのネットワーク概要図である。1FのPC2でも無線LANを利用したいため(ア)に示した箇所を、スイッチングハブから無線 LAN アクセスポイント機能付のブロードバンドルーターに置き換えた。すると、PC1からNASへの接続ができなくなってしまった。この要因として考えられるものを1つ選びなさい。なお、PC1、PC2、携帯ゲーム機、ネットワーク対応テレビは、いずれもインターネットへの接続は正常であり、PC2からNASへの接続も正常に行えるものとする。",
-    "images":"images/_advanced_questionC25",
+    "image":"images/img_advanced_questionC25.png",
     "choices": [
       "無線LANアクセスポイント機能付ブロードバンドルーターがブリッジモードで動作していた。",
       "無線LANアクセスポイント機能付ブロードバンドルーターにより、1Fのネットワークと2Fのネットワークが別のネットワークとなっていた。",
@@ -1684,7 +1684,7 @@
   },
   {
     "question": "次の図は、Webメールでのメールのやり取りを示している。図のア~エの通信で用いられるプロトコルの組み合わせとして、最も適切なものを下の選択肢から1つ選びなさい。",
-    "image":"imges/img_advanced_questionD10.png",
+    "image":"images/img_advanced_questionD10.png",
     "choices": [
       "ア SMTP イ SMTP ウ POP エ POP",
       "ア SMTP イ HTTP ウ SMTP POP",
@@ -1988,7 +1988,7 @@
   },
   {
     "question": "PC を使用中に、下の画面のようなインストールした覚えのない「セキュリティツール」が起動した。セキュリティの観点から、行うべきではないことを下の選択肢から 2 つ選びなさい。",
-    "images":"images/img_advanced_questionD36.png",
+    "image":"images/img_advanced_questionD36.png",
     "choices": [
       "PC をネットワークから切断する。",
       "この画面の「隔離する」ボタンをクリックする。",
@@ -2199,7 +2199,7 @@
   },
   {
     "question": "下の表はIPの上位に当たるプロトコルと会に当たるプロトコルを示したものである。FTPは、表中のa~cのどこに当てはまるか。1つ選びなさい。",
-    "images":"images/img_advanced_questionE03.png",
+    "image":"images/img_advanced_questionE03.png",
     "choices": [
       "a",
       "b",
@@ -2209,7 +2209,7 @@
   },
   {
     "question": "下の表はIPの上位に当たるプロトコルと会に当たるプロトコルを示したものである。HTTPは、表中のa~cのどこに当てはまるか。1つ選びなさい。",
-    "images":"images/img_advanced_questionE03.png",
+    "image":"images/img_advanced_questionE03.png",
     "choices": [
       "a",
       "b",
@@ -2219,7 +2219,7 @@
   },
   {
     "question": "下の表はIPの上位に当たるプロトコルと会に当たるプロトコルを示したものである。TCPは、表中のa~cのどこに当てはまるか。1つ選びなさい。",
-    "images":"images/img_advanced_questionE03.png",
+    "image":"images/img_advanced_questionE03.png",
     "choices": [
       "a",
       "b",
@@ -2229,7 +2229,7 @@
   },
   {
     "question": "下の表はIPの上位に当たるプロトコルと会に当たるプロトコルを示したものである。UDPは、表中のa~cのどこに当てはまるか。1つ選びなさい。",
-    "images":"images/img_advanced_questionE03.png",
+    "image":"images/img_advanced_questionE03.png",
     "choices": [
       "a",
       "b",
@@ -2329,8 +2329,8 @@
     "answer": 2
   },
   {
-    "question": "下図は、あるメールの一部を表示させたものである。この内容からわかることを1つ選びなさい。\n\nContent-Type: multipart/mixed; boundary 002215b02f7e6a394a049144bf8f\n--002215b02f7e6a394a049144bf8f\nContent-Type: text/plain; charset ISO-2022-JP\nContent-Transfer-Encoding: 7bit\nドットコムマスター様\nファイルを添付しました。\nご確認ください。\nドットコム研修生より\n--002215b02f7e6a394a049144bf8f\nContent-Type: application/vnd.ms-excel; name=\"meeting.xls\"\nContent-Disposition: attachment; filename=\"meeting.xls\"\nContent-Transfer-Encoding: base64\nX-Attachment-Id: f_gelvjfc70\n0M8R4KGxGUEAAAAAAAAAAAAAAAAAAAAAPGADAP7/CQAGAAAAAAAAAAAAAAAJAAAAAQAAAAAAAAAA\nEAAAWQQAAAIAAAD+////AAAAAAAAAABIAAAA4WAAAGQBAADIAQAAZgIAAOCCAAB+AWAA6QMAAP//\n//////////\n//////",
-    "images":"images/img_advanced_questionE12.png",
+    "question": "下図は、あるメールの一部を表示させたものである。この内容からわかることを1つ選びなさい。",
+    "image":"images/img_advanced_questionE12.png",
     "choices": [
       "このメールには2つ以上のファイルが添付されている。",
       "送信者は、このメールに文字装飾を施し、HTMLメールとして送信している。",
@@ -2436,7 +2436,7 @@
   },
   {
     "question": "次の図は、PPPoE を使ったFTTH によるインターネット接続構成の一例を示している。このとき、PPPoE の接続設定を行う機器を、図中のa. ~e.から1つ選びなさい。",
-    "images":"images/img_advanced_questionE21.png",
+    "image":"images/img_advanced_questionE21.png",
     "choices": [
       "a.ONU",
       "b.VDSL集合装置",
@@ -2481,7 +2481,7 @@
   },
   {
     "question": "クライアントからサーバーに通信できなかったため、traceroute (tracert コマンド)を使って調査した。どこに障害が発生していると考えられるか。図中の選択肢から1つ選びなさい。",
-    "images":"images/img_advanced_questionE25.png",
+    "image":"images/img_advanced_questionE25.png",
     "choices": [
       "a. クライアントとブロードバンドルーター間",
       "b. ブロードバンドルーターとルーターA間",
@@ -2531,7 +2531,7 @@
   },
   {
     "question": "Aさんは、秘密のデータをBさんだけが読めるように送りたい。公開鍵暗号方式を正しく用いてこれを実現しようとするとき、図中の(1)、(2)に当てはまる鍵として適切なものをそれぞれ1つずつ選びなさい。",
-    "images":"images/img_advanced_questionE29.png",
+    "image":"images/img_advanced_questionE29.png",
     "choices": [
       "a. Aさんの公開鍵",
       "b. Aさんの秘密鍵",
@@ -2639,7 +2639,7 @@
   },
   {
     "question": "下図は、ある攻撃手法により改ざんされた Web ページを表示する例である。これは何と呼ばれる攻撃手法か。下の選択肢から 1 つ選びなさい。",
-    "images":"images/img_advanced_questionE38.png",
+    "image":"images/img_advanced_questionE38.png",
     "choices": [
       "DNS Rebinding",
       "SynFlood 攻撃",
